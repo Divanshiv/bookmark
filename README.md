@@ -127,6 +127,16 @@ CREATE TABLE bookmarks (
 
 Bookmarks are synced in real-time using Supabase subscriptions. Changes made on one device appear instantly on all others.
 
+## Challenges & Solutions
+
+**Supabase Connectivity Issues** - Initial deployment failed due to environment variables not being configured in Vercel. Fixed with proper .env setup and validation in `lib/env.ts`.
+
+**Real-time Connection Pool Exhaustion** - Subscriptions weren't cleaning up on component unmount, draining the connection pool. Solved by adding proper cleanup logic in `use-bookmarks-realtime.ts`.
+
+**RLS Policies Blocking Queries** - After enabling Row-Level Security, authenticated queries failed with 403 errors. Required explicit RLS policy creation for SELECT and INSERT operations.
+
+**Learning Supabase** - First time working with Supabase, PostgreSQL, and JWT auth. Leveraged documentation, Supabase Discord community, and iterative debugging to overcome the learning curve.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
